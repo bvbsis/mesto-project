@@ -1,0 +1,33 @@
+.profile__name-button {
+  background-image: url(../../../images/profile-name-button.svg);
+  background-repeat: no-repeat;
+  background-size: 10px;
+  background-position: center;
+  background-color: rgb(0, 0, 0);
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  margin: 17px 0 0 18px;
+  padding: 0;
+  transition: 300ms;
+}
+
+.profile__name-button:hover {
+  opacity: .6;
+}
+
+@media all and (max-width: 990px) {
+  .profile__name-button {
+    margin: 8px 0 0 12px;
+  }
+}
+
+@media all and (max-width: 670px) {
+  .profile__name-button {
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px;
+    margin: 10px 0 0 10px;
+  }
+}
