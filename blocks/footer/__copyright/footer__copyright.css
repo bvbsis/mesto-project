@@ -2,3 +2,10 @@
   font-size: 18px;
   line-height: 22px;
 }
+
+@media all and (max-width: 670px) {
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

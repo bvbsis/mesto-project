@@ -1,7 +1,13 @@
 .header__logo {
+  display: block;
   background-image: url(../../../images/header-logo.svg);
   width: 142px;
   height: 33px;
+  transition: 300ms;
+}
+
+.header__logo:hover {
+  opacity: .8;
 }
 
 @media all and (max-width: 670px) {
