@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
@@ -22,13 +22,18 @@
           <div class="profile__name-container">
             <h1 class="profile__name-text">Жак-Ив Кусто</h1>
             <button
+              type="button"
               aria-label="Редактировать"
               class="profile__name-button"
             ></button>
           </div>
           <p class="profile__description">Исследователь океана</p>
         </div>
-        <button aria-label="Добавить" class="profile__add-button"></button>
+        <button
+          type="button"
+          aria-label="Добавить"
+          class="profile__add-button"
+        ></button>
       </section>
       <section class="cards">
         <article class="card">
@@ -39,7 +44,11 @@
           />
           <div class="card__footer">
             <h2 class="card__title">Крымский Полуостров</h2>
-            <button aria-label="Нравится" class="card__like-button"></button>
+            <button
+              type="button"
+              aria-label="Нравится"
+              class="card__like-button"
+            ></button>
           </div>
         </article>
         <article class="card">
@@ -50,7 +59,11 @@
           />
           <div class="card__footer">
             <h2 class="card__title">Бангкок</h2>
-            <button aria-label="Нравится" class="card__like-button"></button>
+            <button
+              type="button"
+              aria-label="Нравится"
+              class="card__like-button"
+            ></button>
           </div>
         </article>
         <article class="card">
@@ -61,14 +74,22 @@
           />
           <div class="card__footer">
             <h2 class="card__title">Дагестан</h2>
-            <button aria-label="Нравится" class="card__like-button"></button>
+            <button
+              type="button"
+              aria-label="Нравится"
+              class="card__like-button"
+            ></button>
           </div>
         </article>
         <article class="card">
           <img src="./images/card-germany.jpg" alt="Арка" class="card__image" />
           <div class="card__footer">
             <h2 class="card__title">Германия</h2>
-            <button aria-label="Нравится" class="card__like-button"></button>
+            <button
+              type="button"
+              aria-label="Нравится"
+              class="card__like-button"
+            ></button>
           </div>
         </article>
         <article class="card">
@@ -79,7 +100,11 @@
           />
           <div class="card__footer">
             <h2 class="card__title">Камчатка</h2>
-            <button aria-label="Нравится" class="card__like-button"></button>
+            <button
+              type="button"
+              aria-label="Нравится"
+              class="card__like-button"
+            ></button>
           </div>
         </article>
         <article class="card">
@@ -90,7 +115,11 @@
           />
           <div class="card__footer">
             <h2 class="card__title">Северная Корея</h2>
-            <button aria-label="Нравится" class="card__like-button"></button>
+            <button
+              type="button"
+              aria-label="Нравится"
+              class="card__like-button"
+            ></button>
           </div>
         </article>
       </section>
@@ -98,9 +127,13 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
-    <div class="popup popup_opened.">
+    <div class="popup popup_opened">
       <div class="popup__container">
-        <button aria-label="Закрыть" class="popup__close-button"></button>
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close-button"
+        ></button>
         <form name="popup" class="popup__form">
           <h2 class="popup__heading">Редактировать профиль</h2>
           <fieldset class="popup__input-container">
@@ -116,9 +149,7 @@
               class="popup__field-to-fill"
               placeholder="Расскажите о себе"
             />
-          </fieldset>
-          <fieldset class="popup__handlers">
-            <button class="popup__button">Сохранить</button>
+            <button type="submit" class="popup__button">Сохранить</button>
           </fieldset>
         </form>
       </div>
