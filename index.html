@@ -127,7 +127,7 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
-    <div class="popup popup_opened">
+    <div class="popup popup_type_name">
       <div class="popup__container">
         <button
           type="button"
@@ -140,13 +140,13 @@
             <input
               name="name"
               type="text"
-              class="popup__field-to-fill"
+              class="popup__field-to-fill popup__field-to-fill_name"
               placeholder="Ваше имя"
             />
             <input
               name="desription"
               type="text"
-              class="popup__field-to-fill"
+              class="popup__field-to-fill popup__field-to-fill_description"
               placeholder="Расскажите о себе"
             />
             <button type="submit" class="popup__button">Сохранить</button>
@@ -154,5 +154,33 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_type_image">
+      <div class="popup__container">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close-button"
+        ></button>
+        <form name="popup" class="popup__form">
+          <h2 class="popup__heading">Новое место</h2>
+          <fieldset class="popup__input-container">
+            <input
+              name="name"
+              type="text"
+              class="popup__field-to-fill popup__field-to-fill_name"
+              placeholder="Название"
+            />
+            <input
+              name="desription"
+              type="text"
+              class="popup__field-to-fill popup__field-to-fill_description"
+              placeholder="Ссылка на кртинку"
+            />
+            <button type="submit" class="popup__button">Создать</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <script src="./script.js"></script>
   </body>
 </html>
