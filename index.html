@@ -36,92 +36,7 @@
         ></button>
       </section>
       <section class="cards">
-        <article class="card">
-          <img
-            src="./images/card-aipetri.jpg"
-            alt="Айпетри"
-            class="card__image"
-          />
-          <div class="card__footer">
-            <h2 class="card__title">Крымский Полуостров</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="card__like-button"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img
-            src="./images/card-bangkok.jpg"
-            alt="Бангкок"
-            class="card__image"
-          />
-          <div class="card__footer">
-            <h2 class="card__title">Бангкок</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="card__like-button"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img
-            src="./images/card-dagestan.jpg"
-            alt="Водопад"
-            class="card__image"
-          />
-          <div class="card__footer">
-            <h2 class="card__title">Дагестан</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="card__like-button"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/card-germany.jpg" alt="Арка" class="card__image" />
-          <div class="card__footer">
-            <h2 class="card__title">Германия</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="card__like-button"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img
-            src="./images/card-kamchatka.jpg"
-            alt="Камчатка"
-            class="card__image"
-          />
-          <div class="card__footer">
-            <h2 class="card__title">Камчатка</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="card__like-button"
-            ></button>
-          </div>
-        </article>
-        <article class="card">
-          <img
-            src="./images/card-north-korea.jpg"
-            alt="Северная Корея"
-            class="card__image"
-          />
-          <div class="card__footer">
-            <h2 class="card__title">Северная Корея</h2>
-            <button
-              type="button"
-              aria-label="Нравится"
-              class="card__like-button"
-            ></button>
-          </div>
-        </article>
+       
       </section>
     </main>
     <footer class="footer">
@@ -173,14 +88,31 @@
             <input
               name="desription"
               type="text"
-              class="popup__field-to-fill popup__field-to-fill_description"
-              placeholder="Ссылка на кртинку"
+              class="popup__field-to-fill popup__field-to-fill_src"
+              placeholder="Ссылка на картинку"
             />
             <button type="submit" class="popup__button">Создать</button>
           </fieldset>
         </form>
       </div>
     </div>
+    <template id="card-template">
+      <article class="card">
+        <img
+          src=''
+          alt=''
+          class="card__image"
+        />
+        <div class="card__footer">
+          <h2 class="card__title"></h2>
+          <button
+            type="button"
+            aria-label="Нравится"
+            class="card__like-button"
+          ></button>
+        </div>
+      </article>
+    </template>
     <script src="./script.js"></script>
   </body>
 </html>
