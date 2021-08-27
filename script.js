@@ -26,6 +26,11 @@ const formElement = document.querySelector('.popup__form');
 const nameInput = formElement.querySelector('.popup__field-to-fill_name');
 const jobInput = formElement.querySelector('.popup__field-to-fill_description');
 
+const profileNameText = document.querySelector('.profile__name-text');
+const profileDescription = document.querySelector('.profile__description');
+nameInput.value = profileNameText.textContent;
+jobInput.value = profileDescription.textContent;
+
 function formSubmitHandler (evt) {
     evt.preventDefault();
     const profileNameText = document.querySelector('.profile__name-text');
@@ -73,6 +78,14 @@ initialCards.forEach(function(elem){
   cardElement.querySelector('.card__image').src = elem.link;
   cardElement.querySelector('.card__title').textContent = elem.name;
 
+  cardElement.querySelector('.card__like-button').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('card__like-button_active');
+  });
+
+  cardElement.querySelector('.card__delete-button').addEventListener('click', function(evt){
+    evt.target.parentNode.remove();
+  });
+
   cards.prepend(cardElement);
 });
 
@@ -82,13 +95,26 @@ const placeFormElement = popupImage.querySelector('.popup__form');
 
 function cardSubmitHandler (evt) {
   evt.preventDefault();
+
   const cardElement = cardTemplate.cloneNode(true);
   const placeFieldToFill = popupImage.querySelector('.popup__field-to-fill_name').value;
   const srcFieldToFill = popupImage.querySelector('.popup__field-to-fill_src').value;
+
   cardElement.querySelector('.card__image').src = srcFieldToFill;
   cardElement.querySelector('.card__title').textContent = placeFieldToFill;
+
+  cardElement.querySelector('.card__like-button').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('card__like-button_active');
+  });
+
+  cardElement.querySelector('.card__delete-button').addEventListener('click', function(evt){
+    evt.target.parentNode.remove();
+  });
+
   cards.prepend(cardElement);
+
   popupImage.classList.remove('popup_opened');
+
   popupImage.querySelector('.popup__field-to-fill_name').value = '';
   popupImage.querySelector('.popup__field-to-fill_src').value = '';
 }
