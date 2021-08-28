@@ -71,6 +71,7 @@ const initialCards = [
 
 const cardTemplate = document.querySelector('#card-template').content;
 const cards = document.querySelector('.cards');
+const popupFullView = document.querySelector('.popup_type_full-view');
 
 initialCards.forEach(function(elem){
   const cardElement = cardTemplate.cloneNode(true);
@@ -86,9 +87,26 @@ initialCards.forEach(function(elem){
     evt.target.parentNode.remove();
   });
 
+
+
+  cardElement.querySelector('.card__image').addEventListener('click', function (evt) {
+    popupFullView.querySelector('.popup__img').src = elem.link;
+    popupFullView.querySelector('.popup__img-text').textContent = elem.name;
+    popupFullView.classList.add('popup_opened');
+  });
+
+
+
   cards.prepend(cardElement);
 });
 
+// const FullViewCloseButton = popupFullView.querySelector('.popup__close-button');
+
+// .addEventListener('click', function(){
+//   console.log(popupFullView.querySelector('.card'))
+//   popupFullView.querySelector('.card').classList.remove('popup__opened');
+
+// });
 
 const placeFormElement = popupImage.querySelector('.popup__form');
 
