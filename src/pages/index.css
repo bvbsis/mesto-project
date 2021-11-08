@@ -12,6 +12,7 @@
 @import url(../blocks/popup/__handlers/popup__handlers.css);
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__field-to-fill/popup__field-to-fill.css);
+@import url(../blocks/popup/__error-message/popup__error-message.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__img/popup__img.css);
 @import url(../blocks/popup/__img-text/popup__img-text.css);

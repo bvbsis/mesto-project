@@ -8,9 +8,11 @@
   background-color: transparent;
   padding: 0;
   border: none;
-  transition: 300ms;
+  transition: all 200ms ease-in-out;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .card__delete-button:hover {
-  opacity: .6;
+  opacity: .6 !important;
 }

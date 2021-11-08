@@ -1,0 +1,14 @@
+.popup__error-message {
+  opacity: 0;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(255, 0, 0, 1);
+  transition: all 200ms ease-in;
+  display: block;
+  min-height: 16px;
+  margin-top: 6px;
+}
+
+.popup__error-message_active {
+  opacity: 1;
+}

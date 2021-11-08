@@ -3,3 +3,7 @@
   flex-direction: column;
   position: relative;
 }
+
+.card:hover .card__delete-button {
+  opacity: 1;
+}
