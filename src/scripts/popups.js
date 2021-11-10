@@ -14,13 +14,11 @@ import { createCard } from "./initial-cards.js";
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
-  document.addEventListener("mousedown", closeByOverlayClick);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEscape);
-  document.removeEventListener("mousedown", closeByOverlayClick);
 }
 
 function openPopupProfile(popup) {
@@ -64,15 +62,7 @@ function closeByEscape(evt) {
   }
 }
 
-function closeByOverlayClick(evt) {
-  if (evt.target.classList.contains("popup")) {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
-  }
-}
-
 export {
-  closeByOverlayClick,
   closeByEscape,
   submitFormCardAdd,
   submitFormProfileEdit,

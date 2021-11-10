@@ -31,9 +31,11 @@ const initialCards = [
 
 function createCard(source, title) {
   const cardElement = el.templateCard.cloneNode(true);
-  cardElement.querySelector(".card__image").src = source;
+  const cardImage = cardElement.querySelector(".card__image");
+  const popupImage = popupFullView.querySelector(".popup__img");
+  cardImage.src = source;
   cardElement.querySelector(".card__title").textContent = title;
-  cardElement.querySelector(".card__image").alt = title;
+  cardImage.alt = title;
 
   cardElement
     .querySelector(".card__like-button")
@@ -50,8 +52,8 @@ function createCard(source, title) {
   cardElement
     .querySelector(".card__image")
     .addEventListener("click", function () {
-      popupFullView.querySelector(".popup__img").alt = title;
-      popupFullView.querySelector(".popup__img").src = source;
+      popupImage.alt = title;
+      popupImage.src = source;
       popupFullView.querySelector(".popup__img-text").textContent = title;
       openPopup(popupFullView);
     });

@@ -31,7 +31,7 @@ el.formProfileEdit.addEventListener("submit", submitFormProfileEdit);
 el.formCardAdd.addEventListener("submit", submitFormCardAdd);
 
 el.popups.forEach((popup) => {
-  popup.addEventListener("click", (evt) => {
+  popup.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
       closePopup(popup);
     }
