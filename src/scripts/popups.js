@@ -1,12 +1,26 @@
-import {inputProfileName, textProfileName, inputProfileDescription, textProfileDescription, templateCard, popupCardAdd, containerCards, popupProfileEdit} from "./elements.js"
-import {createCard} from "./initial-cards.js"
+import {
+  inputProfileName,
+  textProfileName,
+  inputProfileDescription,
+  textProfileDescription,
+  popupCardAdd,
+  cardsContainer,
+  popupProfileEdit,
+  inputTitle,
+  inputImage,
+} from "./elements.js";
+import { createCard } from "./initial-cards.js";
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closeByEscape);
+  document.addEventListener("mousedown", closeByOverlayClick);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closeByEscape);
+  document.removeEventListener("mousedown", closeByOverlayClick);
 }
 
 function openPopupProfile(popup) {
@@ -15,106 +29,54 @@ function openPopupProfile(popup) {
   openPopup(popup);
 }
 
-function SubmitFormProfileEdit(evt) {
+function submitFormProfileEdit(evt) {
   evt.preventDefault();
+
+  const buttonElement = popupProfileEdit.querySelector(".popup__button");
+
   textProfileName.textContent = inputProfileName.value;
   textProfileDescription.textContent = inputProfileDescription.value;
+
   closePopup(popupProfileEdit);
+
+  buttonElement.disabled = true;
 }
 
 function submitFormCardAdd(evt) {
   evt.preventDefault();
 
-  const cardElement = templateCard.cloneNode(true);
-  const inputCardTitleValue = popupCardAdd.querySelector(
-    ".popup__field-to-fill_name"
-  ).value;
-  const inputCardSourceValue = popupCardAdd.querySelector(
-    ".popup__field-to-fill_src"
-  ).value;
+  const cardElement = createCard(inputImage.value, inputTitle.value);
+  const buttonElement = popupCardAdd.querySelector(".popup__button");
 
-  createCard(inputCardSourceValue, inputCardTitleValue, cardElement);
-
-  containerCards.prepend(cardElement);
+  cardsContainer.prepend(cardElement);
 
   closePopup(popupCardAdd);
 
-  popupCardAdd.querySelector(".popup__field-to-fill_name").value = "";
-  popupCardAdd.querySelector(".popup__field-to-fill_src").value = "";
+  inputTitle.value = "";
+  inputImage.value = "";
+  buttonElement.disabled = true;
 }
 
-function closeByEsc(evt, popup) {
-  if (evt.key === "Escape" && popup.classList.contains("popup_opened")) {
-    popup.classList.remove("popup_opened");
+function closeByEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
   }
 }
 
-function closeByOverlayClick(evt, popup) {
+function closeByOverlayClick(evt) {
   if (evt.target.classList.contains("popup")) {
-    popup.classList.remove("popup_opened");
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
   }
 }
 
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add("popup__field-to-fill_invalid");
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add("popup__error-message_active");
+export {
+  closeByOverlayClick,
+  closeByEscape,
+  submitFormCardAdd,
+  submitFormProfileEdit,
+  openPopupProfile,
+  openPopup,
+  closePopup,
 };
-
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove("popup__field-to-fill_invalid");
-  errorElement.classList.remove("popup__error-message_active");
-  errorElement.textContent = "";
-};
-
-const checkInputValidity = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-};
-
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.disabled = true;
-  } else {
-    buttonElement.disabled = false;
-  }
-};
-
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(
-    formElement.querySelectorAll(".popup__field-to-fill")
-  );
-  const buttonElement = formElement.querySelector(".popup__button");
-  toggleButtonState(inputList, buttonElement);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".popup__form"));
-  formList.forEach((formElement) => {
-    formElement.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
-};
-
-
-export {enableValidation, closeByOverlayClick, closeByEsc, submitFormCardAdd, SubmitFormProfileEdit, openPopupProfile, openPopup}
-

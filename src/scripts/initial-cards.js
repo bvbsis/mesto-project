@@ -1,56 +1,62 @@
-import {popupFullView} from "./elements.js"
-import {openPopup} from "./popups.js"
+import { popupFullView } from "./elements.js";
+import { openPopup } from "./popups.js";
+import * as el from "./elements.js";
 
-const initialCards = [          //массив с сохраненными карточками
+const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
 ];
 
-function createCard(source, title, cardTemplate) {
-  cardTemplate.querySelector(".card__image").src = source;
-  cardTemplate.querySelector(".card__title").textContent = title;
+function createCard(source, title) {
+  const cardElement = el.templateCard.cloneNode(true);
+  cardElement.querySelector(".card__image").src = source;
+  cardElement.querySelector(".card__title").textContent = title;
+  cardElement.querySelector(".card__image").alt = title;
 
-  cardTemplate
+  cardElement
     .querySelector(".card__like-button")
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("card__like-button_active");
     });
 
-  cardTemplate
+  cardElement
     .querySelector(".card__delete-button")
     .addEventListener("click", function (evt) {
       evt.target.parentNode.remove();
     });
 
-  cardTemplate
+  cardElement
     .querySelector(".card__image")
     .addEventListener("click", function () {
+      popupFullView.querySelector(".popup__img").alt = title;
       popupFullView.querySelector(".popup__img").src = source;
       popupFullView.querySelector(".popup__img-text").textContent = title;
       openPopup(popupFullView);
     });
+
+  return cardElement;
 }
 
-export {initialCards, createCard}
+export { initialCards, createCard };

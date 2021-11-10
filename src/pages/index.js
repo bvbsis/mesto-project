@@ -1,51 +1,47 @@
-import './index.css'
-import * as elements from '../scripts/elements.js'
-import {initialCards, createCard} from '../scripts/initial-cards.js'
-import {enableValidation, closeByOverlayClick, closeByEsc, submitFormCardAdd, SubmitFormProfileEdit, openPopupProfile} from '../scripts/popups.js'
+import "./index.css";
+import * as el from "../scripts/elements.js";
+import { initialCards, createCard } from "../scripts/initial-cards.js";
+import {
+  submitFormCardAdd,
+  submitFormProfileEdit,
+  openPopupProfile,
+  openPopup,
+  closePopup,
+} from "../scripts/popups.js";
+import { enableValidation } from "../scripts/validate.js";
 
-document.addEventListener("keydown", (evt) => {
-  closeByEsc(evt, elements.popupProfileEdit);
-  closeByEsc(evt, elements.popupCardAdd);
-  closeByEsc(evt, elements.popupFullView);
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__field-to-fill",
+  buttonSelector: ".popup__button",
+  inputInvalidClass: "popup__field-to-fill_invalid",
+  errorActiveClass: "popup__error-message_active"
 });
 
-document.addEventListener("mousedown", (evt) => {
-  closeByOverlayClick(evt, elements.popupProfileEdit);
-  closeByOverlayClick(evt, elements.popupCardAdd);
-  closeByOverlayClick(evt, elements.popupFullView);
+el.buttonCardAdd.addEventListener("click", () => {
+  openPopup(el.popupCardAdd);
 });
 
-enableValidation();
-
-
-elements.buttonCardAdd.addEventListener("click", function () {
-  elements.popupCardAdd.classList.add("popup_opened");
+el.buttonProfileEdit.addEventListener("click", () => {
+  openPopupProfile(el.popupProfileEdit);
 });
 
-elements.buttonClosePopupCardAdd.addEventListener("click", function () {
-  elements.popupCardAdd.classList.remove("popup_opened");
-});
+el.formProfileEdit.addEventListener("submit", submitFormProfileEdit);
 
-elements.buttonClosePopupProfile.addEventListener("click", function () {
-  elements.popupProfileEdit.classList.remove("popup_opened");
-});
+el.formCardAdd.addEventListener("submit", submitFormCardAdd);
 
-elements.buttonClosePopupFullView.addEventListener("click", function () {
-  elements.popupFullView.classList.remove("popup_opened");
-});
-
-elements.formProfileEdit.addEventListener("submit", SubmitFormProfileEdit);
-
-elements.formCardAdd.addEventListener("submit", submitFormCardAdd);
-
-elements.buttonProfileEdit.addEventListener("click", () => {
-  openPopupProfile(elements.popupProfileEdit)
+el.popups.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("popup_opened")) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains("popup__close-button")) {
+      closePopup(popup);
+    }
+  });
 });
 
 initialCards.forEach(function (elem) {
-  const cardElement = elements.templateCard.cloneNode(true);
-  createCard(elem.link, elem.name, cardElement);
-  elements.containerCards.prepend(cardElement);
+  const cardElement = createCard(elem.link, elem.name);
+  el.cardsContainer.prepend(cardElement);
 });
-
-
