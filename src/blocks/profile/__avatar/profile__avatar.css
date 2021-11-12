@@ -2,12 +2,7 @@
   border-radius: 50%;
   width: 120px;
   height: 120px;
-  margin-right: 28px;
+  transition: all 200ms ease-in-out;
+  object-fit: cover;
 }
 
-@media all and (max-width: 670px) {
-  .profile__avatar {
-    margin: 0;
-    margin-bottom: 26px;
-  }
-}

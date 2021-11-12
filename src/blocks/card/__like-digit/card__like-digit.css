@@ -1,0 +1,8 @@
+.card__like-digit {
+  display: block;
+  margin: 3px 0 0;
+  font-size: 13px;
+  line-height: 16px;
+  min-width: 100%;
+  text-align: center;
+}

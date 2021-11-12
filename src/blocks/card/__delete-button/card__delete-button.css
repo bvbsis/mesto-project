@@ -11,6 +11,11 @@
   transition: all 200ms ease-in-out;
   opacity: 0;
   cursor: pointer;
+  display: none;
+}
+
+.card__delete-button_active {
+  display: initial;
 }
 
 .card__delete-button:hover {
