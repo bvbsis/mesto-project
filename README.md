@@ -7,4 +7,4 @@
 
 **Github Pages**
 
-* [Ссылка на Github Pages](https://bvbsis.github.io/mesto-project/)
+* [Ссылка на Github Pages](https://bvbsis.github.io/mesto-project/index.html)
