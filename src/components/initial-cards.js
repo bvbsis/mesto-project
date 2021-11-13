@@ -1,7 +1,12 @@
 import { popupFullView } from "./elements.js";
 import { openPopup } from "./popups.js";
 import * as el from "./elements.js";
-import { deleteCard, isLiked, setLike, unsetLike } from "./api.js";
+import { deleteCard, setLike, unsetLike } from "./api.js";
+import { ownerId } from "../pages/index.js";
+
+export const isLiked = (likes) => {
+  return likes.some((like) => like._id == ownerId);
+};
 
 function createCard(source, title, userId, cardId, likesArray) {
   const cardElement = el.templateCard.cloneNode(true);
@@ -30,7 +35,7 @@ function createCard(source, title, userId, cardId, likesArray) {
             likeButton.classList.remove("card__like-button_active");
             likes = data.likes;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       } else {
         setLike(cardId)
           .then((data) => {
@@ -38,17 +43,16 @@ function createCard(source, title, userId, cardId, likesArray) {
             likeButton.classList.add("card__like-button_active");
             likes = data.likes;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
     });
 
   const buttonDelete = cardElement.querySelector(".card__delete-button");
 
-  if (userId === "371b29e820e7a8680d8af6f2") {
+  if (userId === ownerId) {
     buttonDelete.classList.add("card__delete-button_active");
     buttonDelete.addEventListener("click", (evt) => {
-      deleteCard(cardId);
-      evt.target.parentNode.remove();
+      deleteCard(cardId).then(() => evt.target.parentNode.remove());
     });
   }
 

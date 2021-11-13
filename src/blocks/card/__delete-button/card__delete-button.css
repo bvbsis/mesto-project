@@ -21,3 +21,9 @@
 .card__delete-button:hover {
   opacity: .6 !important;
 }
+
+@media all and (max-width: 1024px) {
+  .card__delete-button {
+    opacity: 1;
+  }
+}

@@ -1,6 +1,6 @@
 import "./index.css";
-import * as el from "../scripts/elements.js";
-import { createCard } from "../scripts/initial-cards.js";
+import * as el from "../components/elements.js";
+import { createCard } from "../components/initial-cards.js";
 import {
   submitFormCardAdd,
   submitFormProfileEdit,
@@ -8,20 +8,20 @@ import {
   openPopupProfile,
   openPopup,
   closePopup,
-} from "../scripts/popups.js";
-import { enableValidation } from "../scripts/validate.js";
-import {
-  getCardsList,
-  getUserData,
-  sendUserData,
-  addNewCard,
-} from "../scripts/api.js";
+} from "../components/popups.js";
+import { enableValidation } from "../components/validate.js";
+import { getCardsList, getUserData } from "../components/api.js";
 
-getUserData(el.textProfileName, el.textProfileDescription, el.avatarElement);
+export let ownerId;
 
-getCardsList()
+Promise.all([getUserData(), getCardsList()])
   .then((data) => {
-    data = data.reverse();
+    el.textProfileName.textContent = data[0].name;
+    el.textProfileDescription.textContent = data[0].about;
+    el.avatarElement.src = data[0].avatar;
+    ownerId = data[0]._id;
+
+    data = data[1].reverse();
     data.forEach(function (elem) {
       const cardElement = createCard(
         elem.link,
@@ -33,7 +33,7 @@ getCardsList()
       el.cardsContainer.prepend(cardElement);
     });
   })
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 enableValidation({
   formSelector: ".popup__form",

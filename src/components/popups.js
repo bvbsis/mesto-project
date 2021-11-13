@@ -42,14 +42,13 @@ function submitFormProfileEdit(evt) {
     .then((data) => {
       textProfileName.textContent = data.name;
       textProfileDescription.textContent = data.about;
+      buttonElement.disabled = true;
+      closePopup(popupProfileEdit);
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
     .finally(() => {
       buttonElement.textContent = "Сохранить";
-      closePopup(popupProfileEdit);
     });
-
-  buttonElement.disabled = true;
 }
 
 function submitFormCardAdd(evt) {
@@ -65,13 +64,13 @@ function submitFormCardAdd(evt) {
       cardsContainer.prepend(
         createCard(data.link, data.name, data.owner._id, data._id, data.likes)
       );
-    })
-    .catch(err => console.log(err))
-    .finally(() => {
-      buttonElement.textContent = "Создать";
       closePopup(popupCardAdd);
       inputTitle.value = "";
       inputImage.value = "";
+    })
+    .catch((err) => console.log(err))
+    .finally(() => {
+      buttonElement.textContent = "Создать";
     });
 }
 
@@ -83,12 +82,14 @@ export function submitFormAvatar(evt) {
   buttonElement.disabled = true;
 
   sendAvatarUrl(inputAvatarUrl.value)
-    .then((data) => (avatarElement.src = data.avatar))
-    .catch(err => console.log(err))
-    .finally(() => {
-      buttonElement.textContent = "Сохранить";
+    .then((data) => {
+      avatarElement.src = data.avatar;
       closePopup(popupAvatarEdit);
       inputAvatarUrl.value = "";
+    })
+    .catch((err) => console.log(err))
+    .finally(() => {
+      buttonElement.textContent = "Сохранить";
     });
 }
 

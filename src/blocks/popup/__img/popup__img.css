@@ -4,3 +4,9 @@
   min-height: 55vh;
   margin: auto;
 }
+
+@media all and (max-width: 1024px) {
+  .popup__img {
+    min-height: initial;
+  }
+}
