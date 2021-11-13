@@ -52,7 +52,9 @@ function createCard(source, title, userId, cardId, likesArray) {
   if (userId === ownerId) {
     buttonDelete.classList.add("card__delete-button_active");
     buttonDelete.addEventListener("click", (evt) => {
-      deleteCard(cardId).then(() => evt.target.parentNode.remove());
+      deleteCard(cardId)
+        .then(() => evt.target.parentNode.remove())
+        .catch((err) => console.log(err));
     });
   }
 

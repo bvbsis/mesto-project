@@ -57,7 +57,7 @@ function submitFormCardAdd(evt) {
   const buttonElement = popupCardAdd.querySelector(".popup__button");
 
   buttonElement.textContent = "Сохранение...";
-  buttonElement.disabled = true;
+
 
   addNewCard(inputTitle.value, inputImage.value)
     .then((data) => {
@@ -65,6 +65,7 @@ function submitFormCardAdd(evt) {
         createCard(data.link, data.name, data.owner._id, data._id, data.likes)
       );
       closePopup(popupCardAdd);
+      buttonElement.disabled = true;
       inputTitle.value = "";
       inputImage.value = "";
     })
@@ -79,12 +80,13 @@ export function submitFormAvatar(evt) {
 
   const buttonElement = popupAvatarEdit.querySelector(".popup__button");
   buttonElement.textContent = "Сохранение...";
-  buttonElement.disabled = true;
+
 
   sendAvatarUrl(inputAvatarUrl.value)
     .then((data) => {
       avatarElement.src = data.avatar;
       closePopup(popupAvatarEdit);
+      buttonElement.disabled = true;
       inputAvatarUrl.value = "";
     })
     .catch((err) => console.log(err))
